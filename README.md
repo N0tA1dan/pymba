@@ -1,6 +1,6 @@
 # Pymba
 
-Pymba a simple MBA obfuscator. 
+Pymba, a simple MBA obfuscator
 
 ## What is MBA Obfuscation?
 
