@@ -2,7 +2,7 @@
 
 Pymba a simple MBA obfuscator. 
 
-## What is MBA obfuscation?
+## What is MBA Obfuscation?
 
 MBA stands for Mixed Boolean Arithmetic. When speaking of an MBA expression we can expect to see arithmetic operators such as + and -. We would also see boolean operators like the following:
 ```
