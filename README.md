@@ -45,6 +45,7 @@ git clone https://github.com/N0tA1dan/pymba
 
 After the installation you can now run pymba. To execute pymba simply run:
 ```
+cd pymba
 python3 src/main.py
 ```
 
