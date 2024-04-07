@@ -31,8 +31,9 @@ def apply_substitutions(node):
         if isinstance(node.op, ast.BitAnd):
             return ast.BinOp(ast.BinOp(left, ast.Add(), right), ast.Sub(), ast.BinOp(left, ast.BitOr(), right))
 
-        # Bitwise Or does not currently work. the transformation is: if the operation is X | Y then apply the substitution ~(~X&~Y)... FIXED !
-       
+        # Bitwise Or does not currently work. the transformation is: if the operation is X | Y then apply the substitution ~(~X&~Y)
+
+        # (~X&~Y)+((X+Y)−(~X&~Y))
         if isinstance(node.op, ast.BitOr):
             not_x = ast.UnaryOp(ast.Invert(), left)
             not_y = ast.UnaryOp(ast.Invert(), right)
@@ -40,9 +41,11 @@ def apply_substitutions(node):
             sum_expr = ast.BinOp(left, ast.Add(), right)
             return ast.BinOp(and_expr, ast.Add(), ast.BinOp(sum_expr, ast.Sub(), and_expr))
 
+        # (X | Y) - (X & Y)
         elif isinstance(node.op, ast.BitXor):
             return ast.BinOp(ast.BinOp(left, ast.BitOr(), right), ast.Sub(), ast.BinOp(left, ast.BitAnd(), right))
 
+        # (X ^ -Y) + 2*(X & -Y)
         elif isinstance(node.op, ast.Sub):
             return ast.BinOp(ast.BinOp(left, ast.BitXor(), ast.UnaryOp(ast.USub(), right)), 
                              ast.Add(), 
@@ -50,11 +53,13 @@ def apply_substitutions(node):
                                        ast.Mult(),
                                        ast.Num(2)))
 
+        # (X & Y) + (X | Y)
         elif isinstance(node.op, ast.Add):
             return ast.BinOp(ast.BinOp(left, ast.BitAnd(), right), ast.Add(), ast.BinOp(left, ast.BitOr(), right))
 
         # Default case: return the node as is if no specific rule exists for the operator
         else:
+            # X op Y
             return ast.BinOp(left, node.op, right)
     return node
 
