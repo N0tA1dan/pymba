@@ -77,7 +77,7 @@ if the operation is X + Y then apply the substitution (X & Y) + (X | Y)
 if the operation is X | Y then apply the substitution (~X&~Y)+((X+Y)−(~X&~Y))
 ```
 
-So after all the substitutions we will get an tree that looks like this
+So after all the substitutions we will get an expression that looks like this
 
 ```
 ((A & ((B | C) - (B & C))) + (A | ((B | C) - (B & C))))
