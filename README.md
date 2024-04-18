@@ -124,6 +124,8 @@ This project is meant as a POC. There are some issues that arrise with this spec
 
 If you're using the same tranformation rules, there is a possible security risk in doing so. Lets say I'm using the expression A+B, the output of A+B will always be ((A & B) + (A | B)) if you're using the basic transformations/substitutions I have documented about. Since these rules are hard coded, someone could possibly make a tool to do the exact opposite of what it does. However one way to easily fix this is to use De Morgan's law to generate transformation rules at run time.
 
+By generating random transformation rules at runtime, you eliminate the risk of someone finding the original expression
+
 ## Conclusion
 
 In conclusion, MBA obfusation is a great way to obfuscate arithmetic expressions against computers and pesky people trying to reverse your code. 
