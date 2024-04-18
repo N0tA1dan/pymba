@@ -120,7 +120,9 @@ Round 3:
 ```
 ## Possible Vulnerabilities With MBA
 
-If you're using the same tranformation rules, there is a possible security risk in doing so. Lets say I'm using the expression A+B, the output of A+B will always be ((A & B) + (A | B)) if you're using the basic transformations/substitutions I have documented about. If you had a big enough data set, you could make a "data base" of input expressions and you can get the exact output. However this can be fixed by using transformations randomly and introducing randomness to the algorithm. I plan on doing this in the future but initial releases will not have this. This can also easily be fixed by generating custom transformations at runtime. This could be a huge catestrophic issue with the current MBA obfuscator
+This project is meant as a POC. There are some issues that arrise with this specific tool.
+
+If you're using the same tranformation rules, there is a possible security risk in doing so. Lets say I'm using the expression A+B, the output of A+B will always be ((A & B) + (A | B)) if you're using the basic transformations/substitutions I have documented about. Since these rules are hard coded, someone could possibly make a tool to do the exact opposite of what it does. However one way to easily fix this is to use De Morgan's law to generate transformation rules at run time.
 
 ## Conclusion
 
